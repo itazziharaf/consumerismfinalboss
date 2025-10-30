@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Box - Consumerism Final Boss</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="box-page">
+    <h1 class="box-title" id="boxTitle">Loading...</h1>
+    
+    <div class="game-area">
+        <div class="box-container">
+            <div id="box" class="box">
+                <p class="box-hint">Drag the items you own here</p>
+              <div id="itemsInBox" class="items-in-box"></div>
+        </div>
+        <p class="box-instruction">Click items to remove them</p>
+    </div>
+        
+        <div id="floatingItems" class="floating-items"></div>
+    </div>
+    
+    <!-- Single volume toggle button -->
+    <button id="volumeToggle" class="volume-toggle">
+        <img id="volumeIcon" src="volumeon.png" alt="Volume" class="volume-icon">
+    </button>
+    
+    <button id="doneBtn" class="done-btn">Done</button>
+    
+    <!-- Retro game pink/purple sparkle cursor -->
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+    <script>
+        new cursoreffects.fairyDustCursor({
+            colors: ["#ff00ff", "#ff66ff", "#cc00ff", "#ff99ff", "#9900ff"]
+        });
+    </script>
+    
+    <script src="box-script.js"></script>
+</body>
+</html>

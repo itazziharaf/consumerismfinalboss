@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+/* Custom pixelated cursor */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('cursor.png'), auto !important;
+}
+
+body {
+    font-family: 'Pixelify Sans', cursive;
+    overflow-x: hidden;
+}
+
+/* ... rest of your CSS ... */
+
+/* Landing Page */
+.landing-page {
+    background: #d3d2d2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #000000;
+
+}
+
+.name-input {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;  /* ← Rounded corners back */
+    margin: 1rem 0;
+    text-align: center;
+    background: rgba(255,255,255,0.9);  /* ← White background back */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);  /* ← Shadow back */
+    outline: none;
+    transition: transform 0.2s;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.name-input:focus {
+    transform: scale(1.05);
+}
+
+.enter-btn {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    margin-top: 2rem;
+    background: #fc2e92;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    font-weight: bold;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.enter-btn:hover {
+    background: #17b815;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Box Page */
+.box-page {
+    background: #d3d2d2;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.box-title {
+    text-align: center;
+    color: #fc2e92;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.volume-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.volume-toggle:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.volume-toggle.muted {
+    opacity: 0.6;
+}
+
+.volume-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 200px);
+}
+
+.box-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;  
+}
+
+.box {
+    width: 400px;  /* Adjust size to fit your image */
+    height: 400px;  /* Adjust size to fit your image */
+    background-image: url('box.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;  /* Remove border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+.box-instruction {
+    text-align: center;
+    color: black;  
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-shadow: none;  
+    font-family: 'Pixelify Sans', cursive;
+    position: relative;  
+    width: 100%;
+}
+
+.box-hint {
+    color: #000000;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    white-space: nowrap; 
+}
+
+.items-in-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    max-height: 180px;  /* ← Adjust to fit inside box opening */
+    overflow-y: auto;
+    width: 80%;  /* ← Make narrower to fit inside */
+    justify-content: center;
+    margin-top: 0;  /* ← Remove extra margin */
+}
+
+
+.floating-item {
+    position: absolute;
+    width: 200px;  
+    height: 200px;  
+    cursor: grab;
+    transition: transform 0.2s ease;
+    pointer-events: all;
+    user-select: none;
+    z-index: 1;
+}
+
+.floating-item:hover {
+    transform: scale(1.1);
+}
+
+.floating-item:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.floating-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.item-in-box {
+    width: 80px;  
+    height: 80px;  
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.item-in-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;  
+    border-radius: 0px;  
+    padding: 0px;  
+}
+
+.item-in-box:hover {
+    transform: scale(1.1);
+}
+
+
+.done-btn {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    background: #fc2e92;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    font-weight: bold;
+    z-index: 100;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.done-btn:hover {
+    background: #17b815;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Results Page */
+.results-page {
+    background: #d3d2d2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.results-container {
+    text-align: center;
+    color: #fc2e92;
+    max-width: 600px;
+}
+
+.user-name {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.result-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    margin-bottom: 2rem;
+}
+
+.tier-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.tier-description {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.item-count {
+    font-size: 1.5rem;
+    color: #999;
+    font-weight: bold;
+}
+
+/* Button Group for Screenshot and Restart buttons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.screenshot-btn {
+    font-size: 1.3rem;
+    padding: 1rem 2.5rem;
+    background: #17b815;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    font-weight: bold;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.screenshot-btn:hover {
+    background: #fc2e92;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.restart-btn {
+    font-size: 1.3rem;
+    padding: 1rem 2.5rem;
+    background: #fc2e92;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    font-weight: bold;
+    font-family: 'Pixelify Sans', cursive;
+}
+
+.restart-btn:hover {
+    background: #17b815;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .name-input {
+        font-size: 1.5rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .box {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .floating-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .screenshot-btn, .restart-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
